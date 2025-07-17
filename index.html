@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dr. Jane Doe</title>
+  <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 800px;
+      margin: 3rem auto;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+    #annotate-name {
+      font-size: 2rem;
+      font-weight: bold;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1><span id="annotate-name">Dr. Jane Doe</span></h1>
+
+  <h2>About Me</h2>
+  <p>I’m a researcher in AI and computational linguistics, focused on semantics and multimodal understanding.</p>
+
+  <h2>Publications</h2>
+  <ul>
+    <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
+  </ul>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const annotation = RoughNotation.annotate(
+        document.getElementById("annotate-name"),
+        {
+          type: 'underline',
+          color: 'tomato',
+          animationDuration: 1200,
+          padding: 5
+        }
+      );
+      annotation.show();
+    });
+  </script>
+</body>
+</html>

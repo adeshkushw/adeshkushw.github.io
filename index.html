@@ -7,41 +7,89 @@
   <style>
     body {
       font-family: Georgia, serif;
-      max-width: 700px;
+      max-width: 850px;
       margin: 3rem auto;
       padding: 1rem;
-      line-height: 1.6;
+      line-height: 1.7;
+      color: #222;
     }
-    #annotate-name {
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    img.profile {
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+    }
+    h1, h2 {
+      margin-bottom: 0.5rem;
+    }
+    .annotated {
       display: inline-block;
-      font-size: 2rem;
-      font-weight: bold;
+    }
+    section {
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-  <h1><span id="annotate-name">Adesh Kushwaha</span></h1>
+  <header>
+    <img src="assets/adesh-profile.png" alt="Adesh Kushwaha" class="profile" />
+    <div>
+      <h1><span id="name">Adesh Kushwaha</span></h1>
+      <p><span id="university">University of Nowhere, School of Chemistry</span></p>
+    </div>
+  </header>
 
-  <h2>About Me</h2>
-  <p>I’m a researcher in machine learning and computational linguistics.</p>
+  <section>
+    <h2><span class="highlight" id="about">About Me</span></h2>
+    <p>I’m a computational linguist and AI researcher focused on multimodal semantics, symbolic reasoning, and deep learning methods for language understanding.</p>
+  </section>
 
-  <h2>Publications</h2>
-  <ul>
-    <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
-  </ul>
+  <section>
+    <h2>Publications</h2>
+    <ul>
+      <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
+      <li>Doe, J., & Smith, A. (2023). <i>Multimodal Semantics in Deep Models</i>. Computational Linguistics.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span id="contact">Contact</span></h2>
+    <p>Email: jane.doe@example.edu</p>
+    <p>GitHub: <a href="https://github.com/yourusername">yourusername</a></p>
+  </section>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const annotation = RoughNotation.annotate(
-        document.getElementById("annotate-name"),
-        {
+      const rn = RoughNotation;
+      const annotations = [
+        rn.annotate(document.getElementById("name"), {
           type: 'underline',
           color: 'tomato',
-          animationDuration: 800,
+          padding: 5
+        }),
+        rn.annotate(document.getElementById("university"), {
+          type: 'box',
+          color: 'orange',
           padding: 4
-        }
-      );
-      annotation.show();
+        }),
+        rn.annotate(document.getElementById("about"), {
+          type: 'highlight',
+          color: '#fffb91'
+        }),
+        rn.annotate(document.getElementById("contact"), {
+          type: 'circle',
+          color: 'deepskyblue',
+          padding: 5
+        })
+      ];
+
+      annotations.forEach(a => a.show());
     });
   </script>
 </body>

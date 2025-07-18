@@ -14,69 +14,61 @@
       color: #222;
     }
 
-    /* Navigation */
-    nav {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.5rem;
-    }
-    nav button {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      margin-right: 1.5rem;
-      cursor: pointer;
-      color: #444;
-    }
-    nav button:hover {
-      text-decoration: underline;
-    }
-
-    /* Tabs */
-    .tab {
-      display: none;
-    }
-    .tab.active {
-      display: block;
-    }
-
-    /* Profile header */
     header {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
+
     img.profile {
       border-radius: 50%;
       width: 140px;
       height: 140px;
       object-fit: cover;
     }
-    .annotated {
-      display: inline-block;
+
+    nav {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .tab-link {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-family: Georgia, serif;
+    }
+
+    .tab-link:hover {
+      text-decoration: underline;
+    }
+
+    .tab {
+      display: none;
+    }
+
+    .tab.active {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <!-- Profile -->
   <header>
-    <img src="assets/photo.png" alt="Photo of Dr. Jane Doe" class="profile" />
+    <img src="assets/photo.png" alt="Dr. Jane Doe" class="profile" />
     <div>
       <h1><span id="name">Dr. Jane Doe</span></h1>
       <p><span id="university">University of Nowhere, Department of AI</span></p>
     </div>
   </header>
 
-  <!-- Navigation Tabs -->
   <nav>
-    <button onclick="showTab('about')">About</button>
-    <button onclick="showTab('research')">Research</button>
-    <button onclick="showTab('publications')">Publications</button>
-    <button onclick="showTab('contact')">Contact</button>
+    <a href="#" onclick="showTab('about'); return false;" class="tab-link">About</a> |
+    <a href="#" onclick="showTab('research'); return false;" class="tab-link">Research</a> |
+    <a href="#" onclick="showTab('publications'); return false;" class="tab-link">Publications</a> |
+    <a href="#" onclick="showTab('contact'); return false;" class="tab-link">Contact</a>
   </nav>
 
-  <!-- Tab Sections -->
   <section id="about" class="tab active">
     <h2><span id="about-tab">About Me</span></h2>
     <p>I’m a computational linguist and AI researcher focused on multimodal semantics, symbolic reasoning, and deep learning methods for language understanding.</p>
@@ -105,7 +97,6 @@
     <p>GitHub: <a href="https://github.com/yourusername">yourusername</a></p>
   </section>
 
-  <!-- Scripts -->
   <script>
     function showTab(tabId) {
       document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -113,13 +104,13 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const rn = RoughNotation;
-      [
+      const annotations = [
         { id: "name", type: "underline", color: "tomato" },
         { id: "university", type: "box", color: "orange" },
         { id: "about-tab", type: "highlight", color: "#fffb91" },
         { id: "contact-tab", type: "circle", color: "deepskyblue" }
-      ].forEach(cfg => {
+      ];
+      annotations.forEach(cfg => {
         const el = document.getElementById(cfg.id);
         if (el) {
           RoughNotation.annotate(el, {

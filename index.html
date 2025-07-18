@@ -30,18 +30,22 @@
 
     nav {
       margin-bottom: 2rem;
+    }
+
+    nav button {
+      font-family: 'Courier New', monospace;
       font-size: 1rem;
-    }
-
-    .tab-link {
+      border: 2px solid #888;
+      background: none;
+      padding: 0.4rem 1rem;
       margin-right: 1rem;
-      text-decoration: none;
-      color: #333;
-      font-family: Georgia, serif;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s;
     }
 
-    .tab-link:hover {
-      text-decoration: underline;
+    nav button:hover {
+      background: #f8f8f8;
     }
 
     .tab {
@@ -63,10 +67,10 @@
   </header>
 
   <nav>
-    <a href="#" onclick="showTab('about'); return false;" class="tab-link">About</a> |
-    <a href="#" onclick="showTab('research'); return false;" class="tab-link">Research</a> |
-    <a href="#" onclick="showTab('publications'); return false;" class="tab-link">Publications</a> |
-    <a href="#" onclick="showTab('contact'); return false;" class="tab-link">Contact</a>
+    <button onclick="showTab('about')">About</button>
+    <button onclick="showTab('research')">Research</button>
+    <button onclick="showTab('publications')">Publications</button>
+    <button onclick="showTab('contact')">Contact</button>
   </nav>
 
   <section id="about" class="tab active">

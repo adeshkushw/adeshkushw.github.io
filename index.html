@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dr. Jane Doe – Academic Site</title>
+  <title>Dr. Jane Doe – Academic Homepage</title>
   <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
   <style>
     body {
       font-family: Georgia, serif;
-      max-width: 850px;
+      max-width: 800px;
       margin: 3rem auto;
       padding: 1rem;
       line-height: 1.7;
@@ -28,103 +28,100 @@
       object-fit: cover;
     }
 
-    nav {
-      margin-bottom: 2rem;
+    h1, h2 {
+      margin-bottom: 0.5rem;
     }
 
-    nav button {
-      font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      border: 2px solid #888;
+    section {
+      margin-top: 2rem;
+    }
+
+    #toggle-publications {
       background: none;
+      border: 1px dashed #555;
       padding: 0.4rem 1rem;
-      margin-right: 1rem;
+      font-family: Georgia, serif;
+      font-size: 1rem;
       cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.2s;
+      display: inline-block;
     }
 
-    nav button:hover {
-      background: #f8f8f8;
-    }
-
-    .tab {
+    #publications {
       display: none;
-    }
-
-    .tab.active {
-      display: block;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <img src="assets/photo.png" alt="Dr. Jane Doe" class="profile" />
+    <img src="assets/photo.png" alt="Photo of Dr. Jane Doe" class="profile" />
     <div>
       <h1><span id="name">Dr. Jane Doe</span></h1>
       <p><span id="university">University of Nowhere, Department of AI</span></p>
     </div>
   </header>
 
-  <nav>
-    <button onclick="showTab('about')">About</button>
-    <button onclick="showTab('research')">Research</button>
-    <button onclick="showTab('publications')">Publications</button>
-    <button onclick="showTab('contact')">Contact</button>
-  </nav>
-
-  <section id="about" class="tab active">
-    <h2><span id="about-tab">About Me</span></h2>
+  <!-- About -->
+  <section>
+    <h2>About Me</h2>
     <p>I’m a computational linguist and AI researcher focused on multimodal semantics, symbolic reasoning, and deep learning methods for language understanding.</p>
   </section>
 
-  <section id="research" class="tab">
-    <h2>Research Interests</h2>
-    <ul>
-      <li>Multimodal semantics</li>
-      <li>Symbolic reasoning in neural networks</li>
-      <li>Language + vision models</li>
-    </ul>
+  <!-- Publications Toggle -->
+  <section>
+    <div id="annotate-toggle">
+      <button id="toggle-publications" onclick="togglePublications()">Show Publications</button>
+    </div>
+    <div id="publications">
+      <ul>
+        <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
+        <li>Doe, J., & Smith, A. (2023). <i>Multimodal Semantics in Deep Models</i>. Computational Linguistics.</li>
+      </ul>
+    </div>
   </section>
 
-  <section id="publications" class="tab">
-    <h2>Selected Publications</h2>
-    <ul>
-      <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
-      <li>Doe, J., & Smith, A. (2023). <i>Multimodal Semantics in Deep Models</i>. Computational Linguistics.</li>
-    </ul>
-  </section>
-
-  <section id="contact" class="tab">
-    <h2><span id="contact-tab">Contact</span></h2>
+  <!-- Contact -->
+  <section>
+    <h2>Contact</h2>
     <p>Email: jane.doe@example.edu</p>
     <p>GitHub: <a href="https://github.com/yourusername">yourusername</a></p>
   </section>
 
+  <!-- Scripts -->
   <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
+    function togglePublications() {
+      const pub = document.getElementById("publications");
+      const btn = document.getElementById("toggle-publications");
+      const isVisible = pub.style.display === "block";
+      pub.style.display = isVisible ? "none" : "block";
+      btn.textContent = isVisible ? "Show Publications" : "Hide Publications";
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const annotations = [
-        { id: "name", type: "underline", color: "tomato" },
-        { id: "university", type: "box", color: "orange" },
-        { id: "about-tab", type: "highlight", color: "#fffb91" },
-        { id: "contact-tab", type: "circle", color: "deepskyblue" }
-      ];
-      annotations.forEach(cfg => {
-        const el = document.getElementById(cfg.id);
-        if (el) {
-          RoughNotation.annotate(el, {
-            type: cfg.type,
-            color: cfg.color,
-            animationDuration: 800,
-            padding: 4
-          }).show();
-        }
+      // RoughNotation annotations
+      const box = RoughNotation.annotate(document.getElementById("annotate-toggle"), {
+        type: "box",
+        color: "tomato",
+        padding: 6,
+        animationDuration: 800
       });
+
+      const underline = RoughNotation.annotate(document.getElementById("name"), {
+        type: "underline",
+        color: "tomato",
+        animationDuration: 800
+      });
+
+      const university = RoughNotation.annotate(document.getElementById("university"), {
+        type: "highlight",
+        color: "#fffb91",
+        animationDuration: 800
+      });
+
+      box.show();
+      underline.show();
+      university.show();
     });
   </script>
 </body>

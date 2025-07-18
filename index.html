@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adesh Kushwaha</title>
   <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
   <style>
@@ -13,26 +14,43 @@
       line-height: 1.7;
       color: #222;
     }
+
     header {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
+
     img.profile {
       border-radius: 50%;
       width: 140px;
       height: 140px;
       object-fit: cover;
     }
+
     h1, h2 {
       margin-bottom: 0.5rem;
     }
+
     .annotated {
       display: inline-block;
     }
+
     section {
       margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      img.profile {
+        width: 100px;
+        height: 100px;
+      }
     }
   </style>
 </head>
@@ -45,14 +63,13 @@
     </div>
   </header>
 
-<!-- About -->
-
+  <!-- About -->
   <section>
     <h2><span class="highlight" id="about">About Me</span></h2>
-    <p>I am PhD student working with Dr Ivan Kassal at the University of Sydney. My research focuses on the demonstration of quantum-enhanced light harvesting using analog quantum simulators.</p>
+    <p>I am a PhD student working with Dr Ivan Kassal at the University of Sydney. My research focuses on the demonstration of quantum-enhanced light harvesting using analog quantum simulators.</p>
   </section>
 
-<!-- Publications (Plain) -->
+  <!-- Publications -->
   <section>
     <h2>Publications</h2>
     <ul>
@@ -64,44 +81,44 @@
       <li>
         Rouse, D. M., Kushwaha, A., Tomasi, S., Lovett, B. W., Gauger, E. M., & Kassal, I. (2024).  
         <i>Light-harvesting efficiency cannot depend on optical coherence in the absence of orientational order</i>.  
-        <b>J. Phys. Chem. Lett.</b> 15, 254. 
+        <b>J. Phys. Chem. Lett.</b> 15, 254.
       </li>
     </ul>
   </section>
 
   <!-- Contact -->
-
   <section>
     <h2><span id="contact">Contact</span></h2>
     <p>Email: adesh.kushwaha@sydney.edu.au</p>
   </section>
 
+  <!-- Rough Notation Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const rn = RoughNotation;
       const annotations = [
-        rn.annotate(document.getElementById("name"), {
-          type: 'underline',
-          color: 'tomato',
-          padding: 5
-        }),
-        rn.annotate(document.getElementById("university"), {
-          type: 'box',
-          color: 'orange',
-          padding: 4
-        }),
-        rn.annotate(document.getElementById("about"), {
-          type: 'highlight',
-          color: '#fffb91'
-        }),
-        rn.annotate(document.getElementById("contact"), {
-          type: 'circle',
-          color: 'deepskyblue',
-          padding: 5
-        })
+        {
+          element: document.getElementById("name"),
+          config: { type: 'underline', color: 'tomato', padding: 5, animationDuration: 2000 }
+        },
+        {
+          element: document.getElementById("university"),
+          config: { type: 'box', color: 'orange', padding: 4, animationDuration: 2000 }
+        },
+        {
+          element: document.getElementById("about"),
+          config: { type: 'highlight', color: '#fffb91', animationDuration: 2000 }
+        },
+        {
+          element: document.getElementById("contact"),
+          config: { type: 'circle', color: 'deepskyblue', padding: 5, animationDuration: 2000 }
+        }
       ];
 
-      annotations.forEach(a => a.show());
+      annotations.forEach(({ element, config }) => {
+        if (element) {
+          RoughNotation.annotate(element, config).show();
+        }
+      });
     });
   </script>
 </body>

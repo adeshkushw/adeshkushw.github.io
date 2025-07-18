@@ -2,126 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dr. Jane Doe – Academic Homepage</title>
+  <title>Adesh Kushwaha</title>
   <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
   <style>
     body {
       font-family: Georgia, serif;
-      max-width: 800px;
+      max-width: 850px;
       margin: 3rem auto;
       padding: 1rem;
       line-height: 1.7;
       color: #222;
     }
-
     header {
       display: flex;
       align-items: center;
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
-
     img.profile {
       border-radius: 50%;
       width: 140px;
       height: 140px;
       object-fit: cover;
     }
-
     h1, h2 {
       margin-bottom: 0.5rem;
     }
-
-    section {
-      margin-top: 2rem;
-    }
-
-    #toggle-publications {
-      background: none;
-      border: 1px dashed #555;
-      padding: 0.4rem 1rem;
-      font-family: Georgia, serif;
-      font-size: 1rem;
-      cursor: pointer;
+    .annotated {
       display: inline-block;
     }
-
-    #publications {
-      display: none;
-      margin-top: 1rem;
+    section {
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
-    <img src="assets/photo.png" alt="Photo of Dr. Jane Doe" class="profile" />
+    <img src="assests/profile.png" alt="Adesh Kushwaha" class="profile" />
     <div>
-      <h1><span id="name">Dr. Jane Doe</span></h1>
-      <p><span id="university">University of Nowhere, Department of AI</span></p>
+      <h1><span id="name">Adesh Kushwaha</span></h1>
+      <p><span id="university">University of Nowhere, School of Chemistry</span></p>
     </div>
   </header>
 
-  <!-- About -->
   <section>
-    <h2>About Me</h2>
+    <h2><span class="highlight" id="about">About Me</span></h2>
     <p>I’m a computational linguist and AI researcher focused on multimodal semantics, symbolic reasoning, and deep learning methods for language understanding.</p>
   </section>
 
-  <!-- Publications Toggle -->
   <section>
-    <div id="annotate-toggle">
-      <button id="toggle-publications" onclick="togglePublications()">Show Publications</button>
-    </div>
-    <div id="publications">
-      <ul>
-        <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
-        <li>Doe, J., & Smith, A. (2023). <i>Multimodal Semantics in Deep Models</i>. Computational Linguistics.</li>
-      </ul>
-    </div>
+    <h2>Publications</h2>
+    <ul>
+      <li>Doe, J. (2024). <i>Symbolic Biases in Transformer Models</i>. Journal of AI Research.</li>
+      <li>Doe, J., & Smith, A. (2023). <i>Multimodal Semantics in Deep Models</i>. Computational Linguistics.</li>
+    </ul>
   </section>
 
-  <!-- Contact -->
   <section>
-    <h2>Contact</h2>
+    <h2><span id="contact">Contact</span></h2>
     <p>Email: jane.doe@example.edu</p>
     <p>GitHub: <a href="https://github.com/yourusername">yourusername</a></p>
   </section>
 
-  <!-- Scripts -->
   <script>
-    function togglePublications() {
-      const pub = document.getElementById("publications");
-      const btn = document.getElementById("toggle-publications");
-      const isVisible = pub.style.display === "block";
-      pub.style.display = isVisible ? "none" : "block";
-      btn.textContent = isVisible ? "Show Publications" : "Hide Publications";
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
-      // RoughNotation annotations
-      const box = RoughNotation.annotate(document.getElementById("annotate-toggle"), {
-        type: "box",
-        color: "tomato",
-        padding: 6,
-        animationDuration: 800
-      });
+      const rn = RoughNotation;
+      const annotations = [
+        rn.annotate(document.getElementById("name"), {
+          type: 'underline',
+          color: 'tomato',
+          padding: 5
+        }),
+        rn.annotate(document.getElementById("university"), {
+          type: 'box',
+          color: 'orange',
+          padding: 4
+        }),
+        rn.annotate(document.getElementById("about"), {
+          type: 'highlight',
+          color: '#fffb91'
+        }),
+        rn.annotate(document.getElementById("contact"), {
+          type: 'circle',
+          color: 'deepskyblue',
+          padding: 5
+        })
+      ];
 
-      const underline = RoughNotation.annotate(document.getElementById("name"), {
-        type: "underline",
-        color: "tomato",
-        animationDuration: 800
-      });
-
-      const university = RoughNotation.annotate(document.getElementById("university"), {
-        type: "highlight",
-        color: "#fffb91",
-        animationDuration: 800
-      });
-
-      box.show();
-      underline.show();
-      university.show();
+      annotations.forEach(a => a.show());
     });
   </script>
 </body>

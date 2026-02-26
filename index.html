@@ -31,7 +31,7 @@
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 2rem;
     }
 
     img.profile {
@@ -39,23 +39,6 @@
       width: 140px;
       height: 140px;
       object-fit: cover;
-    }
-
-    /* --- Nav (2.1) --- */
-    nav {
-      margin: 0.5rem 0 2rem;
-    }
-
-    nav a {
-      margin-right: 1.25rem;
-      text-decoration: none;
-      color: #444;
-      display: inline-block;
-      padding: 0.15rem 0;
-    }
-
-    nav a:hover {
-      color: #000;
     }
 
     section {
@@ -66,6 +49,29 @@
       padding-left: 1.2rem;
     }
 
+    /* -------- Paper Hover Underline -------- */
+    #publications li i {
+      position: relative;
+      font-style: italic;
+      cursor: pointer;
+    }
+
+    #publications li i::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background-color: #444;
+      transition: width 0.3s ease;
+    }
+
+    #publications li i:hover::after {
+      width: 100%;
+    }
+    /* ---------------------------------------- */
+
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -75,10 +81,6 @@
       img.profile {
         width: 100px;
         height: 100px;
-      }
-
-      nav a {
-        margin-right: 1rem;
       }
     }
   </style>
@@ -92,16 +94,9 @@
     </div>
   </header>
 
-  <!-- Nav (2.1) -->
-  <nav aria-label="Primary">
-    <a href="#about-section"><span id="nav-about">About</span></a>
-    <a href="#publications"><span id="nav-publications">Publications</span></a>
-    <a href="#contact-section"><span id="nav-contact">Contact</span></a>
-  </nav>
-
   <!-- About -->
-  <section id="about-section">
-    <h2><span class="highlight" id="about">About Me</span></h2>
+  <section>
+    <h2><span id="about">About Me</span></h2>
     <p>
       I am a PhD student working with Prof. Ivan Kassal at the University of Sydney.
       My research focuses on the demonstration of quantum-enhanced light harvesting using analog quantum simulators.
@@ -113,28 +108,37 @@
     <h2>Publications</h2>
     <ul>
       <li>
-        Kushwaha, A., Gauger, E. M., & Kassal, I. (2025).
-        <i>Unifying Collective Effects in Emission, Absorption, and Transfer</i>.
-        Preprint: <b>arXiv</b>:<a href="https://arxiv.org/abs/2511.22335" target="_blank" rel="noopener">2511.22335</a> (2025).
+        Kushwaha, A., Gauger, E. M., & Kassal, I. (2025).  
+        <i>Unifying Collective Effects in Emission, Absorption, and Transfer</i>.  
+        Preprint: <b>arXiv</b>:
+        <a href="https://arxiv.org/abs/2511.22335" target="_blank" rel="noopener">
+          2511.22335
+        </a> (2025).
       </li>
 
       <li>
-        Kushwaha, A. & Kassal, I. (2025).
-        <i>Engineering quantum-enhanced transport by supertransfer</i>.
-        Preprint: <b>arXiv</b>:<a href="https://arxiv.org/abs/2506.05045" target="_blank" rel="noopener">2506.05045</a> (2025).
+        Kushwaha, A. & Kassal, I. (2025).  
+        <i>Engineering quantum-enhanced transport by supertransfer</i>.  
+        Preprint: <b>arXiv</b>:
+        <a href="https://arxiv.org/abs/2506.05045" target="_blank" rel="noopener">
+          2506.05045
+        </a> (2025).
       </li>
 
       <li>
-        Rouse, D. M., Kushwaha, A., Tomasi, S., Lovett, B. W., Gauger, E. M., & Kassal, I. (2024).
-        <i>Light-harvesting efficiency cannot depend on optical coherence in the absence of orientational order</i>.
+        Rouse, D. M., Kushwaha, A., Tomasi, S., Lovett, B. W., 
+        Gauger, E. M., & Kassal, I. (2024).  
+        <i>Light-harvesting efficiency cannot depend on optical coherence in the absence of orientational order</i>.  
         <b>J. Phys. Chem. Lett.</b>
-        <a href="https://doi.org/10.1021/acs.jpclett.3c02847" target="_blank" rel="noopener">15, 254.</a>
+        <a href="https://doi.org/10.1021/acs.jpclett.3c02847" target="_blank" rel="noopener">
+          15, 254.
+        </a>
       </li>
     </ul>
   </section>
 
   <!-- Contact -->
-  <section id="contact-section">
+  <section>
     <h2><span id="contact">Contact</span></h2>
     <p>Email: adesh.kushwaha@sydney.edu.au</p>
   </section>
